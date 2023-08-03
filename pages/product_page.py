@@ -18,3 +18,15 @@ class ProductPage(BasePage):
     def compare_prices(self):
         assert self.get_value(*ProductPageLocators.MAIN_PRODUCT_PRICE) in \
                self.get_value(*ProductPageLocators.BASKET_MINI), 'Total price in basket is not equal to product price'
+
+    def compare_product_names_main_breadcrumbs(self):
+        product_name = self.get_value(*ProductPageLocators.PRODUCT_NAME)
+        breadcrumbs_name = self.get_value(*ProductPageLocators.BREADCRUMBS_PRODUCT_NAME)
+        assert product_name == breadcrumbs_name, f'Product name in breadcrumbs {breadcrumbs_name!r} not equal ' \
+                                                 f'{product_name!r} in the main product name'
+
+    def compare_product_names_main_alert(self):
+        product_name = self.get_value(*ProductPageLocators.PRODUCT_NAME)
+        product_name_alert = self.get_value(*ProductPageLocators.PRODUCT_NAME_ALERT)
+        assert product_name == product_name_alert, f'Product name in alert {product_name_alert!r} not equal ' \
+                                                   f'{product_name!r} in the main product name'
