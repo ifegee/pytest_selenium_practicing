@@ -28,5 +28,12 @@ class ProductPage(BasePage):
     def compare_product_names_main_alert(self):
         product_name = self.get_value(*ProductPageLocators.PRODUCT_NAME)
         product_name_alert = self.get_value(*ProductPageLocators.PRODUCT_NAME_ALERT)
-        assert product_name == product_name_alert, f'Product name in alert {product_name_alert!r} not equal ' \
-                                                   f'{product_name!r} in the main product name'
+        assert product_name == product_name_alert, \
+            f'Product name in alert {product_name_alert!r} not equal {product_name!r} in the main product name'
+
+    def success_message_is_not_present(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            'Success message is presented, but should not be'
+
+    def success_message_is_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE)
