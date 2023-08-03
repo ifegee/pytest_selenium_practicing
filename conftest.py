@@ -22,6 +22,7 @@ def browser(request):
     browser = None
     if browser_name == 'chrome':
         options_ch = OptionsCH()
+        # options_ch.add_argument('--headless')
         options_ch.add_experimental_option('prefs', {'intl.accept_languages': user_language})
         browser = webdriver.Chrome(options=options_ch)
     elif browser_name == 'firefox':

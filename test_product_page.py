@@ -1,5 +1,6 @@
 import pytest
 
+from pages.basket_page import BasketPage
 from .pages.login_page import LoginPage
 from .pages.product_page import ProductPage
 
@@ -33,10 +34,11 @@ def test_guest_cant_see_success_message(browser):
     page.success_message_is_not_present()
 
 
-@pytest.mark.xfail
+# @pytest.mark.xfail
 def test_message_disappeared_after_adding_product_to_basket(browser):
     link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
-    page = ProductPage(browser, link).open()
+    page = ProductPage(browser, link)
+    page.open()
     page.success_message_is_disappeared()
 
 
@@ -54,3 +56,12 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page.go_to_login_page()
     login_page = LoginPage(browser, browser.current_url)
     login_page.should_be_login_page()
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = 'http://selenium1py.pythonanywhere.com/ru/catalogue/the-girl-who-played-with-non-fire_203/'
+    page = ProductPage(browser, link)
+    page.open()
+    page.go_to_basket_page()
+    page = BasketPage(browser, browser.current_url)
+    page.have_message_with_continue_shopping_link()
+    page.should_not_have_products()

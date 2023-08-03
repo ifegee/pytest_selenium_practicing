@@ -1,5 +1,5 @@
 from .base_page import BasePage
-from .locators import ProductPageLocators
+from .locators import BasePageLocators, ProductPageLocators
 
 
 class ProductPage(BasePage):
@@ -17,11 +17,11 @@ class ProductPage(BasePage):
 
     def compare_prices(self):
         assert self.get_value(*ProductPageLocators.MAIN_PRODUCT_PRICE) in \
-               self.get_value(*ProductPageLocators.BASKET_MINI), 'Total price in basket is not equal to product price'
+               self.get_value(*BasePageLocators.BASKET), 'Total price in basket is not equal to product price'
 
     def compare_product_names_main_breadcrumbs(self):
         product_name = self.get_value(*ProductPageLocators.PRODUCT_NAME)
-        breadcrumbs_name = self.get_value(*ProductPageLocators.BREADCRUMBS_PRODUCT_NAME)
+        breadcrumbs_name = self.get_value(*BasePageLocators.BREADCRUMBS_PRODUCT_NAME)
         assert product_name == breadcrumbs_name, f'Product name in breadcrumbs {breadcrumbs_name!r} not equal ' \
                                                  f'{product_name!r} in the main product name'
 
