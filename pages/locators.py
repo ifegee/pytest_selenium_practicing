@@ -15,10 +15,6 @@ class BasketPageLocators:
     BASKET_TITLE = (By.CSS_SELECTOR, '.basket-title')
 
 
-# class MainPageLocators:
-#     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
-
-
 class LoginPageLocators:
     LOGIN_FORM = (By.ID, 'login_form')
     LOGIN_EMAIL = (By.CSS_SELECTOR, '#id_login-username')
